@@ -4,7 +4,7 @@ zuul:
   routes:
     workshops-service: /workshop/**
     visits-service: /visit/**
-    costumers-service: /customer/**
+    customers-service: /customer/**
     api-gateway: /gateway/**
 
 server:
