@@ -8,9 +8,18 @@ server:
 
 # embedded database init, supports mysql too trough the 'mysql' spring profile
 spring:
+  config:
+    activate:
+      on-profile: mysql
   datasource:
-    schema: classpath*:db/hsqldb/schema.sql
-    data: classpath*:db/hsqldb/data.sql
+    schema: classpath*:db/mysql/schema.sql
+    data: classpath*:db/mysql/data.sql
+    url: jdbc:mysql://localhost:3306/servisin?useSSL=false
+    username: root
+    password: servisin
+    initialization-mode: ALWAYS
+  jpa:
+    generate-ddl: true
   sleuth:
     sampler:
       probability: 1.0
@@ -70,16 +79,3 @@ chaos:
       repository: false
       rest-controller: false
       service: false
-
----
-spring:
-  config:
-    activate:
-      on-profile: mysql
-  datasource:
-    schema: classpath*:db/mysql/schema.sql
-    data: classpath*:db/mysql/data.sql
-    url: jdbc:mysql://localhost:3306/servisin?useSSL=false
-    username: root
-    password: servisin
-    initialization-mode: ALWAYS
